@@ -251,7 +251,7 @@ local theme = lush(function(injected_functions)
         sym("@lsp.type.variable")({ Identifier }),
 
         sym("@lsp.type.derive")({ fg = colors.teal }),
-        sym("@punctuation.special.rust")({ PreProc }),
+        sym("@punctuation.special.rust")({ Special }),
         sym("@property.lua")({ Identifier }),
         sym("@constructor.lua")({ fg = colors.orange }),
         sym("@markup.link")({ fg = hsl(72, 27, 40) }),
