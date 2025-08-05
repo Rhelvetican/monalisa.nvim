@@ -2,23 +2,6 @@ local lush = require("lush")
 
 local hsl = lush.hsl
 
--- Unused colors
--- yellow = "#f6d666", -- Core from iterm, not used
--- red = "#992a21", -- core from iterm, not used
--- crimson = "#991f2d", -- core from iterm, not used
--- teal = "#598058" -- core teal
--- crimson = "#b94649",
--- darkYellow = "#c7ad53",
--- darkYellow = "#d9b054",
--- darkYellow = "#a18954",
--- brightGreen = "#b4b264",
--- fg = "#f7e7ae",
--- altBlue = "#51605b",
--- blueGreen = hsl("#4c584a").lighten(10), -- lightened version is equivalent to blueGreen
--- brightBlack = "#874228",
--- hsl("#231a1d").lighten(5)
--- brown = "#341b0f", -- Core color from iterm, but not visible on background (light mode fg?)
-
 local colors = {
     black = "#120b0d",
     tan = "#ffe598",
@@ -54,8 +37,8 @@ local c = {
     func = colors.green,
     type = colors.darkOrange,
     builtinType = colors.blueGreen,
-    builtinFunc = colors.darkOrange, -- TODO: decide between green, teal, blueGreen
-    field = colors.teal, -- TODO: figure out this one between teal, orange, darkYellow
+    builtinFunc = colors.darkOrange,
+    field = colors.teal,
 
     error = colors.crimson,
     warn = colors.darkOrange,
@@ -120,7 +103,6 @@ local theme = lush(function(injected_functions)
         Question({}), -- |hit-enter| prompt and yes/no questions
         QuickFixLine({}), -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
         SpecialKey({}), -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-        -- SpellBad({ fg = c.comment }), -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
         SpellBad({}), -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
         SpellCap({}), -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
         SpellLocal({}), -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
@@ -174,7 +156,7 @@ local theme = lush(function(injected_functions)
         Special({ fg = c.special }), -- (*) Any special symbol
         SpecialChar({ Special }), --   Special character in a constant
         Tag({ Special }), --   You can use CTRL-] on this
-        Delimiter({ fg = c.delimiter }), --   Character that needs attention
+        Delimiter({ fg = c.special }), --   Character that needs attention
         SpecialComment({}), --   Special things inside a comment (e.g. '\n')
         Debug({}), --   Debugging statements
 
@@ -224,8 +206,8 @@ local theme = lush(function(injected_functions)
         sym("@text.underline")({ Underlined }), -- Underlined
         sym("@text.todo")({ Todo }), -- Todo
         sym("@comment")({ Comment }), -- Comment
-        sym("@punctuation")({ fg = c.punc }), -- Delimiter
-        sym("@punctuation.bracket")({ Delimiter }), -- Delimiter
+        sym("@punctuation")({ Special }), -- Delimiter
+        sym("@punctuation.bracket")({ Special }), -- Delimiter
         sym("@constant")({ Constant }), -- Constant
         sym("@constant.builtin")({ Constant }), -- Special
         sym("@constant.macro")({ Define }), -- Define
@@ -315,5 +297,3 @@ local theme = lush(function(injected_functions)
 end)
 
 return theme
-
--- vi:nowrap
